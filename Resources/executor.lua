@@ -1,12 +1,19 @@
+--[[
+Este es el ejecutador que se encarga de ejecutar archivos y funciones,
+asi haciendo mas facil empaquetar esos comandos y mandarlos al nucleo.
+]]
+
+--Se requiere el nucleo
 local core = require"Resources/core"
+
+--La funcion para empaquetar
 local function requirecoroutine(tipo,...)
   if tipo == "F" then
     local t = {...}
     for i,v in pairs(t) do
       if type(loadfile(love.filesystem.getSource().."/"..v)) ~= "function" then
         error("\n there is an error loading "..v..":\n"..
-          loadfile(love.filesystem.getSource().."/"..v)
-        )
+          loadfile(love.filesystem.getSource().."/"..v))
       end
       core.add(function()
       loadfile(love.filesystem.getSource().."/"..v)()
@@ -19,4 +26,11 @@ local function requirecoroutine(tipo,...)
     end
   end
 end
+
+--Se hace global
 _G.InCoroutine = requirecoroutine
+
+--Se requiere primero para hacerlo funcionar
+return function (...) e = {...}
+  for _,v in pairs(e) do dofile(love.filesystem.getSource().."/"..v)end
+end

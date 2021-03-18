@@ -12,7 +12,7 @@ coroutines.add = function(obj)
   if type(obj) == "function" then
     table.insert(coroutines.cor,coroutine.create(obj))
   else
-    error('\n you need add a function to run \n <<In Resources/core.lua "11">>')
+    error('\n you need add a function to run \n <<In Resources/Base/core.lua "11">>')
   end
 end
 

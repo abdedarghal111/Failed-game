@@ -4,7 +4,7 @@ asi haciendo mas facil empaquetar esos comandos y mandarlos al nucleo.
 ]]
 
 --Se requiere el nucleo
-local core = require"Resources/core"
+local core = require"Resources/Base/core"
 
 --La funcion para empaquetar
 local function requirecoroutine(tipo,...)

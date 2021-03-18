@@ -1,4 +1,3 @@
-local vector2 = require"Vector2"
 local cube = {
   position = vector2.new(),
   size = vector2.new(100,100),

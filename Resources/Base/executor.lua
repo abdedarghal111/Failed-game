@@ -8,6 +8,9 @@ local core = require"Resources/Base/core"
 
 --La funcion para empaquetar
 local function requirecoroutine(tipo,...)
+  if tipo ~= "f" and tipo ~= "F" then
+    error('\n You dont put the type of coroutine("f" or "F").')
+  end
   if tipo == "F" then
     local t = {...}
     for i,v in pairs(t) do
@@ -28,7 +31,7 @@ local function requirecoroutine(tipo,...)
 end
 
 --Se hace global
-_G.InCoroutine = requirecoroutine
+_G.addcoroutine = requirecoroutine
 
 --Se requiere primero para hacerlo funcionar
 return function (...) e = {...}

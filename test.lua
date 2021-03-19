@@ -1,12 +1,11 @@
-local cube = require("Resources/Modules/cube")
-local img = love.graphics.newImage("Data/Images/1.png")
-local rec = cube.new()
+local imga = require("Resources/Modules/image")
+local img = imga.new(_,_,_,_,asserts.img.somefloor)
+
 addcoroutine("f",function()
 while true do
-  love.graphics.draw(img,100,100)
-  rec.rotation = rec.rotation + 1
-  rec.position.x = rec.position.x + 1
+  img.rotation = img.rotation + 1
+  img.position.x = img.position.x + 1
   wait()
-  rec:draw()
+  img:draw()
 end
 end)

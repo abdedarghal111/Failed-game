@@ -14,7 +14,8 @@ function love.load()
   core = require("Resources/Base/core")
 end
 
---Loop infinito
+--Loop infinito,funcionamiento del juego
 function love.draw()
+  love.graphics.setDefaultFilter("nearest")
   core.run()
 end

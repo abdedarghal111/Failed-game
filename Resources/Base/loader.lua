@@ -1,18 +1,20 @@
 --[[
-Este archivo se encargara de cargar las imagenes, audio para tenerlos listos
-para su uso.
+Este archivo se encargara de cargar las imagenes, audio y empaquetarlos en una
+tabla para tenerlos listos para su uso.
 --]]
 _G.asserts = {
   img = {}
 }
 
---Esta funcion se encarga de empaquetar las imagenes y añadirlas a la tabla
-local function addimages(t)
-  local img = "Data/Images/"
-  for i,v in pairs(t) do
-    asserts.img[i] = love.graphics.newImage(img..v..".png")
+--Esta funcion se encarga de empaquetar las imagenes u audio y añadirlas a la tabla
+local function addasserts(t,table)
+  local e = love.filesystem.getDirectoryItems(t)
+  for i,v in pairs(e) do
+    local i = v
+    local v = string.sub(v,1,#v - 4)
+    asserts[table][v] = love.graphics.newImage(t.."/"..i)
   end
 end
 
---Se ejecuta la funcion
-addimages({1,2,3,4,somefloor = "somefloor"})
+--Se ejecuta la funcion con las direcciones necesarias
+addasserts("Data/Images","img")

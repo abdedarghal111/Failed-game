@@ -10,7 +10,7 @@ function love.load()
   local r = "Resources/Base/"
   execute(r.."Vector2.lua",r.."core.lua",r.."executor.lua",
           r.."loader.lua",
-          "test.lua")
+        "test.lua")
   core = require("Resources/Base/core")
 end
 

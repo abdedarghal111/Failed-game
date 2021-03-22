@@ -4,8 +4,8 @@ Esta es la tabla con las funciones y caracteristicas propias. Tambien tendra
 funciones de renderizado y caracteristicas necesarias.
 --]]
 local image = {
-  position = vector2.new(),
-  size = vector2.new(100,100),
+  --position = vector2.new(),
+  --size = vector2.new(100,100),
   image = nil,
   rotation = 0,
   candraw = true,
@@ -30,6 +30,8 @@ function image.new(x,y,px,py,img,candraw)
   for i,v in pairs(image) do
     e[i] = v
   end
+  e.position = vector2.new()
+  e.size = vector2.new(100,100)
   e.position.x = x or 0
   e.position.y = y or 0
   e.size.x = px or 100

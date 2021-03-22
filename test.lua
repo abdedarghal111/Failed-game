@@ -1,11 +1,14 @@
-local imga = require("Resources/Modules/image")
-local img = imga.new(_,_,_,_,asserts.img.somefloor)
-
+local img = require("Resources/Modules/image")
+local x,y = love.graphics.getDimensions()
+local _x,_y = asserts.img.cohete:getDimensions();_x,_y = _x*3,_y*4
+local image = img.new(x/2-(_x/2),y/2-(_y/2),_x,_y,asserts.img.cohete)
+local _x,_y = asserts.img.title:getDimensions();
+local text = img.new(x/2,y/2,_x,_y,asserts.img.title)
+image.rotation = 15
 addcoroutine("f",function()
-while true do
-    img.rotation = img.rotation + 1
-    img.position.x = img.position.x + 1
+  while true do
     wait()
-    img:draw()
+    image:draw()
+    text:draw()
   end
 end)

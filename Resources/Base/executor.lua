@@ -25,15 +25,26 @@ local function requirecoroutine(tipo,...)
   elseif tipo == "f" then
     local t = {...}
     for i,v in pairs(t) do
-      core.add(v)
+      return core.add(v)
     end
   end
 end
 
---Se hace global
+--Se agrega una funcion para ejecutar archivos
+local function execute(...)
+  local e = {...}
+  for _,v in pairs(e) do
+    if type(loadfile(love.filesystem.getSource().."/"..v)) ~= "function" then
+      local _,pe = loadfile(love.filesystem.getSource().."/"..v)
+      error("\n there is an error loading "..v..":\n"..tostring(pe))
+    end
+    loadfile(love.filesystem.getSource().."/"..v)()
+  end
+end
+
+--Se hace global la funcion para añadir coroutina
 _G.addcoroutine = requirecoroutine
+_G.execute = execute
 
 --Se requiere primero para hacerlo funcionar
-return function (...) e = {...}
-  for _,v in pairs(e) do dofile(love.filesystem.getSource().."/"..v)end
-end
+return execute
